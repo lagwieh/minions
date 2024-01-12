@@ -25,6 +25,7 @@ export const cancelMeetings = () => {
 }
 
 export const createMeetingThunk = () => dispatch => {
+  console.log('createMeetingThunk');
   axios.post('http://localhost:4001/api/meetings')
   .then(res => res.data)
   .then(createdMeeting => {

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { deleteMinionThunk } from '../store/minions'; 
 
 const AllMinions = props => {
+  console.log( props)
   const minions = props.minions.map(minion => {
     let name = minion.name.match(/.{1,11}/g).join('\n');
     return (
