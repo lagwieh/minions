@@ -60,6 +60,7 @@ class Minion extends Component {
               }
             </div>
             <div className="minion-description">
+         
               { 
                 this.state.editing
                 ? <MinionEdit handleChange={this.handleChange} {...this.props.minion} />

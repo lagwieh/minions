@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan')
 const app = express();
 
 module.exports = app;
@@ -9,6 +10,8 @@ module.exports = app;
 */
 const PORT = process.env.PORT || 4001;
 console.log( PORT );
+// 
+// app.use(morgan('tiny'))
 // Add middleware for handling CORS requests from index.html
 app.use( cors() );
 app.use(express.static(__dirname));
