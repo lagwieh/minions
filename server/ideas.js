@@ -6,7 +6,7 @@ const ideas = db.getAllFromDatabase('ideas')
 // GET METHOD
   // GET ALL IDEAS
 ideaRouter.get('/', (req, res, next)=>{
-  console.log('ideas request arrived');
+  // console.log('ideas request arrived');
   res.send(ideas)
 });
 

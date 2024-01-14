@@ -5,7 +5,7 @@ const meetings = db.getAllFromDatabase('meetings')
 // GET METHOD
   // GET ALL MEETINGS
 meetingRouter.get('/', (req, res, next)=>{
-  console.log('meetings request arrived');
+  // console.log('meetings request arrived');
   res.send(meetings)
 });
 
