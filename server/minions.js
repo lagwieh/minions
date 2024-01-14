@@ -6,10 +6,10 @@ const minions = db.getAllFromDatabase('minions')
 
 // console.log("minions: ",minions)
 
-minionRouter.use(bodyParser.json())
+// minionRouter.use(bodyParser.json())
 
 minionRouter.param('minionId', (req, res, next, id)=>{
-  console.log(id);
+  console.log(req.body);
   let minionId = id;
   try{
     const minionIdExists = minions.find(minion =>{
@@ -68,6 +68,7 @@ minionRouter.delete('/:minionId',(req, res, next)=>{
 // error middleware
 minionRouter.use((err, req, res, next)=>{
   let status = err.status || 500;
+  console.log(req.body)
   res.status(status).send(err.message)
 });
 module.exports.minionRouter = minionRouter;

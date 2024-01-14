@@ -3,12 +3,13 @@ const express = require('express');
 const {minionRouter} = require('./minions');
 const {ideaRouter} = require('./ideas');
 const {meetingRouter} = require('./meetings');
+const bodyParser = require('body-parser')
 // console.log(minionRouter);
 const db = require('./db');
 
 const apiRouter = express.Router();
 
-
+apiRouter.use(bodyParser.json())
 apiRouter.use('/minions',minionRouter);
 apiRouter.use('/ideas', ideaRouter);
 apiRouter.use('/meetings', meetingRouter);
