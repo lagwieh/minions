@@ -44,12 +44,13 @@ meetingRouter.post('/', (req, res, next)=>{
       meeting.date = meeting.date || new Date();
       meeting.day = meeting.day || '';
       meeting.note = meeting.note || '';
-      db.addToDatabase('meetings',meeting)
-      res.status(201).send(meeting)
+      const newMeeting = db.addToDatabase('meetings',meeting);
+      res.status(201).send(newMeeting)
     }else{
       const newRandomMeeting = db.createMeeting()
-      // console.log(meetings)
-      // res.send(newRandomMeeting)
+      console.log(meetings)
+      const newMeeting= db.addToDatabase('meetings',newRandomMeeting);
+      res.status(201).send(newMeeting)
     }
   } catch (error) {
     next(err);
@@ -59,9 +60,19 @@ meetingRouter.post('/', (req, res, next)=>{
 // DELETE METHOD
   // DELETE ALL MEETINGS
 meetingRouter.delete('/', (req, res, next)=>{
-  const deletedDb = db.deleteAllFromDatabase('meetings');
-  meetings = deletedDb;
-  res.status(204).send();
+  try {
+    const deletedDb = db.deleteAllFromDatabase('meetings');
+    if(deletedDb){
+      meetings = db.getAllFromDatabase('meetings');
+      res.status(204).send();
+
+    }else{
+      next(new Error("Model doesn't exists"))
+    }
+    
+  } catch (error) {
+    next(error)
+  }
 });
 // ERROR MIDDLEWARE
 meetingRouter.use((err, req, res, next)=>{
